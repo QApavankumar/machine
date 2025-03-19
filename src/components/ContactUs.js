@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./ContactUs.css";
 const ContactUs= () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -13,13 +13,16 @@ const ContactUs= () => {
 
   const validateForm = () => {
     let errors = {};
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$/;
+    
     if (!formData.name) errors.name = "Name is required";
     if (!formData.email) errors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.email = "Invalid email format";
+    else if (!emailPattern.test(formData.email)) errors.email = "Invalid email format";
     if (!formData.message) errors.message = "Message is required";
+    
     setErrors(errors);
     return Object.keys(errors).length === 0;
-  };
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,15 +38,35 @@ const ContactUs= () => {
       {/* Contact Form */}
       <section className="mb-5">
         <h2 className="text-center">Contact Us</h2>
-        <form onSubmit={handleSubmit} className="w-50 mx-auto">
+        <form onSubmit={handleSubmit} className="contact-form mx-auto">
+
           <div className="mb-3">
             <label className="form-label">Name</label>
-            <input type="text" name="name" className="form-control" value={formData.name} onChange={handleChange} />
+            <input 
+    type="text" 
+    name="name" 
+    className="form-control" 
+    value={formData.name} 
+    onChange={handleChange} 
+    pattern="[A-Za-z ]+" 
+    onInput={(e) => e.target.value = e.target.value.replace(/[^A-Za-z ]/g, '')} 
+    required 
+/>
+
             {errors.name && <small className="text-danger">{errors.name}</small>}
           </div>
           <div className="mb-3">
             <label className="form-label">Email</label>
-            <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} />
+            <input 
+    type="email" 
+    name="email" 
+    className="form-control" 
+    value={formData.email} 
+    onChange={handleChange} 
+    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z]{2,}\.[a-zA-Z]{2,}" 
+    title="Please enter a valid email address" 
+    required 
+/>
             {errors.email && <small className="text-danger">{errors.email}</small>}
           </div>
           <div className="mb-3">
@@ -64,17 +87,19 @@ const ContactUs= () => {
       </section>
 
       {/* Map Section */}
-      <section className="text-center">
-        <h3>Find Us</h3>
+      <section className="text-center mb-5">
+        <h3 className="text-center mb-3">Find Us</h3>
         <iframe
           title="Office Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093626!2d144.95565131531812!3d-37.81732797975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f8e61b7f%3A0x5087a76b17a5777!2sTech%20City!5e0!3m2!1sen!2sus!4v1638246214089!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23804.248302873217!2d78.57438719999999!3d17.3309952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1742377931780!5m2!1sen!2sin"
           width="100%"
           height="300"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
         ></iframe>
+
+        {/* <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23804.248302873217!2d78.57438719999999!3d17.3309952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1742377931780!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
       </section>
     </div>
 

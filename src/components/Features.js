@@ -1,8 +1,52 @@
-import React from "react";
+import React ,{useState}from "react";
 import { useNavigate } from "react-router-dom";
 
 const Features = () => {
     const navigate = useNavigate();
+    // State to track the selected feature
+    const [selectedFeature, setSelectedFeature] = useState("Predictive Maintenance");
+
+    // Feature details mapping
+    const featureSummaries = {
+      "Predictive Maintenance": "Use AI to predict failures before they happen, reducing downtime and cutting maintenance costs.",
+      "Optimization Tools": "Improve efficiency with real-time, data-driven decision-making powered by smart algorithms.",
+      "Data Analysis": "Unlock valuable insights by analyzing complex data with advanced machine learning models."
+  };
+
+  // Expanded details for Feature Details section
+  const featureDetails = {
+      "Predictive Maintenance": `
+          Predictive Maintenance leverages AI-driven analytics to forecast equipment failures before they happen, ensuring smooth operations and minimizing unexpected downtimes. 
+          By continuously monitoring sensor data, AI algorithms can detect anomalies and predict when maintenance is required, reducing unnecessary maintenance costs.
+
+          **Key Benefits:**
+          - Prevent costly breakdowns and extend machinery lifespan.
+          - Reduce downtime and improve production efficiency.
+          - Minimize maintenance costs by focusing only on necessary repairs.
+          - Enhance safety by identifying potential failures in advance.
+      `,
+      "Optimization Tools": `
+          Optimization tools use machine learning and real-time data analytics to streamline workflows and improve operational efficiency. 
+          These tools analyze historical and live data to recommend the best possible actions, improving resource allocation and reducing waste.
+
+          **Key Benefits:**
+          - Automate decision-making for better resource utilization.
+          - Enhance productivity by identifying process bottlenecks.
+          - Reduce waste and optimize material usage.
+          - Improve overall operational efficiency and cost savings.
+      `,
+      "Data Analysis": `
+          Data Analysis involves extracting meaningful insights from vast amounts of industrial data. 
+          By leveraging advanced machine learning models, businesses can gain a deeper understanding of trends, predict future performance, and make data-driven decisions.
+
+          **Key Benefits:**
+          - Identify patterns and trends in production processes.
+          - Improve decision-making with actionable insights.
+          - Predict demand and optimize inventory management.
+          - Gain a competitive edge through strategic data analysis.
+      `
+  };
+
     return (
         <>
            <div className="container mt-5">
@@ -13,72 +57,34 @@ const Features = () => {
       </section>
 
       {/* Features List */}
-      <section className="mb-5">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="card p-3 shadow">
-              <h5>Predictive Maintenance</h5>
-              <p>Use AI to detect potential failures before they occur, reducing downtime and maintenance costs.</p>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card p-3 shadow">
-              <h5>Optimization Tools</h5>
-              <p>Enhance operational efficiency with real-time data-driven decision-making algorithms.</p>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card p-3 shadow">
-              <h5>Data Analysis</h5>
-              <p>Gain valuable insights by analyzing complex datasets using advanced machine learning techniques.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* Features List */}
+    <section className="mb-5">
+                <div className="row">
+                    {Object.keys(featureSummaries).map((feature) => (
+                        <div key={feature} className="col-md-4 mb-3">
+                            <div 
+                                className={`card p-3 shadow h-100 d-flex flex-column ${selectedFeature === feature ? "border-primary" : ""}`} 
+                                onClick={() => setSelectedFeature(feature)} 
+                                style={{ cursor: "pointer" }}
+                            >
+                                <h5>{feature}</h5>
+                                <p className="flex-grow-1">{featureSummaries[feature]}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-      {/* Feature Details */}
-      <section className="mb-5">
-        <h3 className="text-center">Feature Details</h3>
-        <div className="accordion" id="featureAccordion">
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
-              <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Predictive Maintenance
-              </button>
-            </h2>
-            <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#featureAccordion">
-              <div className="accordion-body">
-                Predict equipment failures before they happen, ensuring smooth production and reduced costs.
-              </div>
-            </div>
-          </div>
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="headingTwo">
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Optimization Tools
-              </button>
-            </h2>
-            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#featureAccordion">
-              <div className="accordion-body">
-                Improve resource utilization and streamline workflows with AI-powered optimization strategies.
-              </div>
-            </div>
-          </div>
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="headingThree">
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Data Analysis
-              </button>
-            </h2>
-            <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#featureAccordion">
-              <div className="accordion-body">
-                Extract meaningful insights from large datasets, helping businesses make informed decisions.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+
+            {/* Feature Details (Dynamic Content) */}
+            <section className="mb-5">
+                <h3 className="text-center">Feature Details</h3>
+                <div className="card p-4 shadow">
+                    <h5>{selectedFeature}</h5>
+                    <p style={{ whiteSpace: "pre-line" }}>{featureDetails[selectedFeature]}</p>
+                </div>
+            </section>
+                </div>
            
                    </>
     );

@@ -10,7 +10,9 @@ import Resources from './components/Resources';
 import Navbar from './components/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
+import GettingStartedML from './GettingStartedML';
+import PredictiveMaintenance from './PredictiveMaintenance';
+import DataAnalysis from './DataAnalysis';
 function App() {
   return (
    <div>
@@ -23,6 +25,9 @@ function App() {
     <Route path="/Blog" element={<Blog/>}></Route>
     <Route path="/Features" element={<Features/>}></Route>
     <Route path="/Resources" element={<Resources/>}></Route>
+    <Route path="/GettingStartedML" element={<GettingStartedML/>}></Route>
+    <Route path="/PredictiveMaintenance" element={<PredictiveMaintenance/>}></Route>
+    <Route path="/DataAnalysis" element={<DataAnalysis/>}></Route>
    </Routes>
    
    </div>

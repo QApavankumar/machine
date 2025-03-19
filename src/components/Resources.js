@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom";
 const Resources = () => {
     const navigate = useNavigate();
     const datasets = [
-        { name: "Predictive Maintenance Dataset", link: "#" },
-        { name: "Optimization Algorithms Dataset", link: "#" },
-        { name: "Industrial Sensor Data", link: "#" }
+        { name: "Predictive Maintenance Dataset", link: "/pdfs/predictive_maintenance.pdf" },
+        { name: "Optimization Algorithms Dataset", link: "/pdfs/Optimization_Algorithm.pdf" },
+        { name: "Industrial Sensor Data", link: "/pdfs/sensor_data.pdf" }
       ];
     
       const tutorials = [
-        { title: "Getting Started with Machine Learning", link: "#" },
-        { title: "Predictive Maintenance Using AI", link: "#" },
-        { title: "Data Analysis for Mechanical Processes", link: "#" }
+        { title: "Getting Started with Machine Learning", link: "/GettingStartedML" },
+        { title: "Predictive Maintenance Using AI", link: "/PredictiveMaintenance" },
+        { title: "Data Analysis for Mechanical Processes", link: "/DataAnalysis" }
       ];
     
     return (
@@ -28,7 +28,7 @@ const Resources = () => {
           {datasets.map((dataset, index) => (
             <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
               {dataset.name}
-              <a href={dataset.link} className="btn btn-primary btn-sm">Download</a>
+              <a href={dataset.link} download className="btn btn-primary btn-sm">Download</a>
             </li>
           ))}
         </ul>

@@ -4,12 +4,16 @@ import { useNavigate } from "react-router-dom";
 const Faq = () => {
     const navigate = useNavigate();
     const faqs = [
-        { question: "What is machine learning in the mechanical industry?", answer: "Machine learning in the mechanical industry helps optimize processes, predict maintenance needs, and improve efficiency." },
-        { question: "How does predictive maintenance work?", answer: "Predictive maintenance uses AI and data analytics to foresee equipment failures before they happen, reducing downtime." },
-        { question: "What optimization tools are available?", answer: "AI-powered optimization tools enhance manufacturing efficiency by streamlining workflows and reducing waste." },
-        { question: "How can data analysis benefit mechanical processes?", answer: "Data analysis helps industries make informed decisions, detect anomalies, and improve performance." }
-      ];
-    
+      { question: "What is machine learning in the mechanical industry?", answer: "Machine learning in the mechanical industry helps optimize processes, predict maintenance needs, and improve efficiency." },
+      { question: "How does predictive maintenance work?", answer: "Predictive maintenance uses AI and data analytics to foresee equipment failures before they happen, reducing downtime." },
+      { question: "What optimization tools are available?", answer: "AI-powered optimization tools enhance manufacturing efficiency by streamlining workflows and reducing waste." },
+      { question: "How can data analysis benefit mechanical processes?", answer: "Data analysis helps industries make informed decisions, detect anomalies, and improve performance." },
+      { question: "How does AI improve quality control in manufacturing?", answer: "AI-driven visual inspection systems detect defects in real-time, ensuring higher accuracy and consistency in quality control." },
+      { question: "What role does IoT play in predictive maintenance?", answer: "IoT-enabled sensors collect real-time equipment data, helping AI models predict failures and optimize maintenance schedules." },
+      { question: "How can AI-driven robotics enhance mechanical operations?", answer: "AI-powered robotics automate repetitive tasks, improve precision, and reduce reliance on manual labor in mechanical industries." },
+      { question: "What are the benefits of real-time analytics in mechanical processes?", answer: "Real-time analytics provide instant insights, allowing industries to quickly respond to operational changes and improve efficiency." }
+  ];
+  
     return (
         <>
            <div className="container mt-5">
